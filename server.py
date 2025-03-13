@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template
-import whisper, tempfile
+import whisper, tempfile, ffmpeg
 
 app = Flask(__name__)
 
@@ -28,11 +28,14 @@ def upload():
 
         if file_size == 0:
             return 'Errore: File vuoto', 400
+        
+        with tempfile.NamedTemporaryFile(delete=True, suffix=".opus") as audio_opus:
+            audio_opus.write(file_data)
+            audio_opus.flush()
 
-        with tempfile.NamedTemporaryFile(delete=True, suffix=".mp3") as temp_audio:
-            temp_audio.write(file_data)
-            temp_audio.flush()
-            result = model.transcribe(temp_audio.name)
+            with tempfile.NamedTemporaryFile(delete=True, suffix=".mp3") as audio_mp:
+                ffmpeg.input(audio_opus.name).output(audio_mp.name, audio_bitrate="192k").run(overwrite_output=True, quiet=True)
+                result = model.transcribe(audio_mp.name)
         
         return f'Trascrizione: {result["text"]}'
     

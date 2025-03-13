@@ -1,3 +1,4 @@
 flask
 openai-whisper
 numpy<2
+ffmpeg-python
