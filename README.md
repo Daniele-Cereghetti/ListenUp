@@ -4,9 +4,9 @@ Listen-Up is a web application built with Python and Flask that enables automati
 ## Installation
 1. Choose a Whisper Model Image<br>
    Whisper is available in multiple sizes: tiny, base, small, medium, and large.
-   More info about openai's models click [here](https://github.com/openai/whisper?tab=readme-ov-file#available-models-and-languages).<br>
-   If you change the model, you have to change in app.py and in the Dockerfile, it must match. <br><br>
-   💡 By default, small is used — it's fast, accurate in most cases, and rarely makes mistakes. Even when it does, the context usually makes the meaning clear. It occpuies ~2GB of RAM
+   For more information about OpenAI's models click [here](https://github.com/openai/whisper?tab=readme-ov-file#available-models-and-languages).<br>
+   If you change the model, you have to change in server.py and in the Dockerfile, it must match. <br><br>
+   💡 By default, `small` is used — it's fast, accurate in most cases, and rarely makes mistakes. Even when it does, the context usually makes the meaning clear. It occupies ~2GB of RAM
 
 2. Build Docker image<br>
    Enter in the root project and run:
@@ -18,3 +18,9 @@ Listen-Up is a web application built with Python and Flask that enables automati
    ```
    docker run -d --name listen-up -p 5000:5000 listen-up
    ```
+
+## Limitations & Disclaimer
+Listen-Up is a work in progress and not intended for production use.
+- Transcriptions may occasionally contain errors, especially with background noise or unclear speech.
+- No authentication or advanced error handling is implemented.
+- Performance and accuracy vary based on hardware and model size.
