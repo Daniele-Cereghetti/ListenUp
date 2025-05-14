@@ -8,12 +8,12 @@ Listen-Up is a web application built with Python and Flask that enables automati
    If you change the model, you have to change in app.py and in the Dockerfile, it must match. <br><br>
    💡 By default, small is used — it's fast, accurate in most cases, and rarely makes mistakes. Even when it does, the context usually makes the meaning clear. It occpuies ~2GB of RAM
 
-2. Build Docker image.<br>
+2. Build Docker image<br>
    Enter in the root project and run:
    ```
    docker build -t listen-up .
    ```
-3. Run Docker container:
+3. Run Docker container<br>
    One you build the image you can run it with:
    ```
    docker run -d --name listen-up -p 5000:5000 listen-up
